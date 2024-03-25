@@ -382,10 +382,10 @@ class Hyperparameter:
             data = {"type": "object", "properties": {}}
 
             for key in domain.params:
-                data["properties"][
-                    key
-                ] = Hyperparameter.createHyperparameterConfigForHyperoptDomain(
-                    domain.params[key]
+                data["properties"][key] = (
+                    Hyperparameter.createHyperparameterConfigForHyperoptDomain(
+                        domain.params[key]
+                    )
                 )
 
                 if "name" not in data["properties"][key]:
@@ -396,9 +396,9 @@ class Hyperparameter:
             data = {"type": "object", "properties": {}}
 
             for item in domain.named_args:
-                data["properties"][
-                    item[0]
-                ] = Hyperparameter.createHyperparameterConfigForHyperoptDomain(item[1])
+                data["properties"][item[0]] = (
+                    Hyperparameter.createHyperparameterConfigForHyperoptDomain(item[1])
+                )
 
             return data
         elif domain.name == "switch":
@@ -1137,9 +1137,9 @@ class ATPEOptimizer:
                                     secondary.name
                                 ]
                         elif atpeParams["secondaryLockingMode"] == "random":
-                            lockedValues[
-                                secondary.name
-                            ] = self.chooseRandomValueForParameter(secondary)
+                            lockedValues[secondary.name] = (
+                                self.chooseRandomValueForParameter(secondary)
+                            )
 
                 elif atpeParams["secondaryProbabilityMode"] == "correlation":
                     probability = max(
@@ -1162,9 +1162,9 @@ class ATPEOptimizer:
                                     secondary.name
                                 ]
                         elif atpeParams["secondaryLockingMode"] == "random":
-                            lockedValues[
-                                secondary.name
-                            ] = self.chooseRandomValueForParameter(secondary)
+                            lockedValues[secondary.name] = (
+                                self.chooseRandomValueForParameter(secondary)
+                            )
 
             # Now last step, we filter results prior to sending them into ATPE
             for resultIndex, result in enumerate(results):
